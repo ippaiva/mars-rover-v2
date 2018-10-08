@@ -8,74 +8,171 @@ var robot1 = {
   travelLog:[]
 };
 
-//2º
+//2º TurnsLeft/Right
 function turnRight(rover){
   if (rover.direction === 'N'){
       rover.direction = 'E';
-  } if(rover.direction === 'E'){
-    rover.direction = 'S';
-  } if(rover.direction === 'S'){
-    rover.direction = 'W';
+  } else if(rover.direction === 'E'){
+      rover.direction = 'S';
+  } else if(rover.direction === 'S'){
+      rover.direction = 'W';
   } else {
-    rover.direction = 'N';
+      rover.direction = 'N';
   }
   console.log("TurnRightt was called!")
 }
 
-function turnLeft(rover){
-  if(rover.direction ==='N'){
-    rover.direction = 'W';
-  } if(rover.direction === 'W'){
+function turnRight(rover){
+  switch (rover.direction) {
+    case 'N':
+      rover.direction= 'E';
+      break;
+    case 'E':
     rover.direction = 'S';
-  } if(rover.direction === 'S'){
-    rover.direction = 'E';
-  } else {
-    rover.direction = 'N';
+      break;
+    case 'S':
+      rover.direction = 'W';
+      break;
+    default: rover.direction 'N';
   }
-  console.log("TurnLeft was called!")
-  
 }
 
-//3º
-function goForward (direction){
-  switch (direction){
+function turnLeft(rover){
+  if(rover.direction ==='N'){
+      rover.direction = 'W';
+  } else if(rover.direction === 'W'){
+      rover.direction = 'S';
+  } else if(rover.direction === 'S'){
+      rover.direction = 'E';
+  } else {
+      rover.direction = 'N';
+  }
+  console.log("TurnLeft was called!")
+
+}
+function turnLeft(rover){
+  switch (rover.direction) {
+    case 'N':
+      rover.direction= 'W';
+      break;
+    case 'W':
+    rover.direction = 'S';
+      break;
+    case 'S':
+      rover.direction = 'W';
+      break;
+    default: rover.direction 'N';
+  }
+}
+
+//3º goForward
+/*function goForward(rover){
+  if (rover.direction === 'N') {
+    rover.y--;
+  } else if (rover.direction === 'S') {
+    rover.y++;
+  }else if (rover.direction==='E') {
+    rover.x++;
+  }else (rover.direction==='W') {
+    rover.x--;
+  }
+}*/
+function goForward (rover){
+  switch (rover.direction){
     case "N":
-      if( rover.y > 0) { 
-        rover.y -= 1;
+      if( rover.y > 0) {
+        rover.y--;
       }
       else{
         console.log("Limite minimo de y");
       }
       break;
     case "W":
-      if( rover.x > 0) { 
-        rover.x -= 1;
+      if( rover.x > 0) {
+        rover.x--;
       }
       else{
         console.log("Limite minimo de x");
       }
       break;
     case "S":
-      if( rover.y < 10) { 
-      rover.y += 1;
+      if( rover.y < 10) {
+      rover.y++;
       }
       else{
         console.log("Limite maximo de y");
       }
       break;
     case "E":
-      if( rover.x < 10) { 
-      rover.x += 1;
+      if( rover.x < 10) {
+      rover.x ++;
       }
       else{
         console.log("Limite maximo de x");
       }
       break;
   }
+  log(rover);
 }
 
-//4º
-function listOfCommands(command) {
+function goBackward(rover){
+  switch (rover.direction){
+    case "N":
+      if( rover.y < 10) {
+        rover.y += 1;
+      }
+      else{
+        console.log("Limite maximo de y");
+      }
+      break;
+    case "W":
+      if( rover.x < 10) {
+      rover.x += 1;
+      }
+      else{
+        console.log("Limite maximo de x");
+      }
+      break;
+    case "S":
+      if( rover.y > 0) {
+      rover.y -= 1;
+      }
+      else{
+        console.log("Limite maximo de y");
+      }
+      break;
+    case "E":
+      if( rover.x > 0) {
+      rover.x -= 1;
+      }
+      else{
+        console.log("Limite maximo de x");
+      }
+      break;
+  }
+  log(rover);
+}
+
+
+//4º listOfCommands
+function commands(texto, rover){
+  for (var i = 0; i < texto.length; i++) {
+    if(texto[i] === "f"){
+      goForward(rover);
+    } else if (texto[i] === "r") {
+      turnRight(rover);
+    } else if(texto[i] === "l"){
+      turnLeft(rover);
+    } else if (texto[i] === "b") {
+      goBackward(rover);
+    } else {
+      console.log("Comando Inválido");
+    }
+  }
+}
+
+
+function listOfCommands(command,rover) {
   console.log("stars at x:" + rover.x + " y:" + rover.y + " direction: " + rover.direction);
 
     for (var i=0; i<command.length; i++){
@@ -104,43 +201,12 @@ function listOfCommands(command) {
 }
 listOfCommands("lrfqgfblr");
 
-//5º
-function goBackward(direction){
-  switch (direction){
-    case "N":
-      if( rover.y < 10) { 
-        rover.y += 1;
-      }
-      else{
-        console.log("Limite maximo de y");
-      }      
-      break;
-    case "W":
-      if( rover.x < 10) { 
-      rover.x += 1;
-      }
-      else{
-        console.log("Limite maximo de x");
-      }
-      break;
-    case "S":
-      if( rover.y > 0) {
-      rover.y -= 1;
-      }
-      else{
-        console.log("Limite maximo de y");
-      }
-      break;
-    case "E":
-      if( rover.x > 0) {
-      rover.x -= 1;
-      }
-      else{
-        console.log("Limite maximo de x");
-      }
-      break;
-  }
+//5º travelLog
+function Log(rover){
+	rover.travelLog.push(rover.x, rover.y);
 }
+
+
 
 
 
@@ -148,14 +214,14 @@ function goBackward(direction){
 // ======================
 
 
-function turnLeft(rover){
+function turnLeft(robot1){
   console.log("turnLeft was called!");
 }
 
-function turnRight(rover){
+function turnRight(robot1){
   console.log("turnRight was called!");
 }
 
-function moveForward(rover){
+function moveForward(robot1){
   console.log("moveForward was called")
 }
