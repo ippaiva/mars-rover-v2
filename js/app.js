@@ -33,7 +33,7 @@ function turnRight(rover){
     case 'S':
       rover.direction = 'W';
       break;
-    default: rover.direction 'N';
+    default: rover.direction ='N';
   }
 }
 
@@ -61,7 +61,7 @@ function turnLeft(rover){
     case 'S':
       rover.direction = 'W';
       break;
-    default: rover.direction 'N';
+    default: rover.direction ='N';
   }
 }
 
