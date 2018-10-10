@@ -9,18 +9,6 @@ var robot1 = {
 };
 
 //2º TurnsLeft/Right
-function turnRight(rover){
-  if (rover.direction === 'N'){
-      rover.direction = 'E';
-  } else if(rover.direction === 'E'){
-      rover.direction = 'S';
-  } else if(rover.direction === 'S'){
-      rover.direction = 'W';
-  } else {
-      rover.direction = 'N';
-  }
-  console.log("TurnRightt was called!")
-}
 
 function turnRight(rover){
   switch (rover.direction) {
@@ -35,21 +23,9 @@ function turnRight(rover){
       break;
     default: rover.direction ='N';
   }
+  console.log("TurnRightt was called!")
 }
 
-function turnLeft(rover){
-  if(rover.direction ==='N'){
-      rover.direction = 'W';
-  } else if(rover.direction === 'W'){
-      rover.direction = 'S';
-  } else if(rover.direction === 'S'){
-      rover.direction = 'E';
-  } else {
-      rover.direction = 'N';
-  }
-  console.log("TurnLeft was called!")
-
-}
 function turnLeft(rover){
   switch (rover.direction) {
     case 'N':
@@ -63,20 +39,11 @@ function turnLeft(rover){
       break;
     default: rover.direction ='N';
   }
+  console.log("TurnLeft was called!")
 }
 
 //3º goForward
-/*function goForward(rover){
-  if (rover.direction === 'N') {
-    rover.y--;
-  } else if (rover.direction === 'S') {
-    rover.y++;
-  }else if (rover.direction==='E') {
-    rover.x++;
-  }else (rover.direction==='W') {
-    rover.x--;
-  }
-}*/
+
 function goForward (rover){
   switch (rover.direction){
     case "N":
@@ -205,9 +172,6 @@ listOfCommands("lrfqgfblr");
 function Log(rover){
 	rover.travelLog.push(rover.x, rover.y);
 }
-
-
-
 
 
 
