@@ -23,7 +23,7 @@ function turnRight(rover){
       break;
     default: rover.direction ='N';
   }
-  console.log("TurnRightt was called!")
+  console.log("TurnRight was called!")
 }
 
 function turnLeft(rover){
@@ -45,6 +45,7 @@ function turnLeft(rover){
 //3º goForward
 
 function goForward (rover){
+  console.log("F rover "+rover);
   switch (rover.direction){
     case "N":
       if( rover.y > 0) {
@@ -146,16 +147,16 @@ function listOfCommands(command,rover) {
       var letter = command.charAt(i);
     if (letter === "f" || letter === "b" || letter === "r" || letter === "l"){
       if (letter === "f"){
-        goForward(rover.direction);
+        goForward(rover);
       }
       if (letter === "b"){
-        goBackward(rover.direction);
+        goBackward(rover);
       }
       if (letter === "r"){
-        moveRover(rover.direction,"r");
+        turnRight(rover,"r");
       }
       if (letter === "l"){
-        moveRover(rover.direction,"l");
+        turnLeft(rover,"l");
       }
       rover.travelLog.push("x:" + rover.x + " y:" + rover.y + " direction: " + rover.direction);
     }
@@ -166,10 +167,11 @@ function listOfCommands(command,rover) {
     console.log("This is de the hole route:");
     console.log(rover.travelLog);
 }
-listOfCommands("lrfqgfblr");
+listOfCommands("lrfqgfblr", robot1);
 
 //5º travelLog
-function Log(rover){
+function log(rover){
+  console.log("rover is: "+rover);
 	rover.travelLog.push(rover.x, rover.y);
 }
 
@@ -178,14 +180,8 @@ function Log(rover){
 // ======================
 
 
-function turnLeft(robot1){
-  console.log("turnLeft was called!");
-}
+turnLeft(robot1);
 
-function turnRight(robot1){
-  console.log("turnRight was called!");
-}
+turnRight(robot1);
 
-function moveForward(robot1){
-  console.log("moveForward was called")
-}
+goForward(robot1);
